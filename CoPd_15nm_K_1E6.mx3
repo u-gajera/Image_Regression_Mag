@@ -1,0 +1,32 @@
+Nx := 256
+Ny := 256
+Nz := 4
+sizeX := 5120e-9
+sizeY := 5120e-9
+sizeZ := 16e-9
+SetGridSize(Nx, Ny, Nz)
+SetCellsize(sizeX/Nx, sizeY/Ny, sizeZ/Nz)
+
+//input from the python
+Msat = 1.2e6
+Aex = 0.9e-10
+alpha = 0.9
+Ku1 = 9.2e5
+anisU = vector(0,0,1)
+Temp = 400
+//end input from the python
+
+m = RandomMag()
+FixDt = 1e-12
+run(50e-9)
+saveas(m, "Domain_CoPd_K_1E6_Ms_1p2")
+snapshot(m)
+
+tableadd(Edens_total)
+tableadd(Edens_anis)
+tableadd(Edens_demag)
+tableadd(Edens_exch)
+tablesave()
+ 
+
+
